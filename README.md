@@ -19,9 +19,10 @@ This set-up requires the existence/creation of three files:
 
 In user.txt, make sure to have the Shibboleth declaration, similar to the following (refer to OCLC documentation for more info):
 
-``` ::Shibboleth 
-IDP20 https://your.institutional.shibboleth.url.here
-/Shibboleth ```
+```
+- ::Shibboleth 
+- IDP20 https://your.institutional.shibboleth.url.here
+- /Shibboleth ```
 
 Conclude user.txt with the following directive:
 
