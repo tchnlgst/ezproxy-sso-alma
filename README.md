@@ -19,23 +19,19 @@ This set-up requires the existence/creation of three files:
 
 In user.txt, make sure to have the Shibboleth declaration, similar to the following (refer to OCLC documentation for more info):
 
-::Shibboleth 
-
+``` ::Shibboleth 
 IDP20 https://your.institutional.shibboleth.url.here
-
-/Shibboleth
+/Shibboleth ```
 
 Conclude user.txt with the following directive:
 
-::file=shibuser.txt
+``` ::file=shibuser.txt ```
 
 
 Your shibboleth administrator will provide you with a set of attributes that shibboleth is releasing to you. You'll want to note what the shib attribute for username is. In our case, that attribute is UID. In shibuser.txt, you only need the following:
 
-Set login:user = auth:uid
-
-If ! UserFile("alma.txt"); Deny baduser.txt
-
+``` Set login:user = auth:uid
+If ! UserFile("alma.txt"); Deny baduser.txt ```
 
 Basically, you're setting login.user to auth:uid (this value will depend on your shibboleth set-up, but will need to reference the username attribute that shibboleth releases).
 
