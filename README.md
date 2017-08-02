@@ -4,7 +4,7 @@ This README covers steps for configuring Ezproxy to use shibboleth for authentic
 
 ### What is this repository for? ###
 
-* Shibboleth implements the "saml" protocol, and upon authentication returns something called a saml response, which looks like an xml document. The saml response contains the saml attribute statements, which are the attributes that are used by the application (ezproxy) to authorize / entitle the user. In most cases, Shibboleth will release enough attributes for ezproxy to make login authorization decisions. In those cases, there is no need to configure the Alma user API for authorization. However, in cases when shibboleth does not provide enough relevant attributes back, the need arises to take one of the released shibboleth attributes, and query the Alma user API with it, in order to get more information about the patron, and make authorization decisions.
+Shibboleth implements the "saml" protocol, and upon authentication returns something called a saml response, which looks like an xml document. The saml response contains the saml attribute statements, which are the attributes that are used by the application (ezproxy) to authorize / entitle the user. In most cases, Shibboleth will release enough attributes for ezproxy to make login authorization decisions. In those cases, there is no need to configure the Alma user API for authorization. However, in cases when shibboleth does not provide enough relevant attributes back, the need arises to take one of the released shibboleth attributes, and query the Alma user API with it, in order to get more information about the patron, and make authorization decisions.
 
 ### How do I get set up? ###
 
@@ -19,10 +19,11 @@ This set-up requires the existence/creation of three files:
 
 In user.txt, make sure to have the Shibboleth declaration, similar to the following (refer to OCLC documentation for more info):
 
-```
-- ::Shibboleth 
-- IDP20 https://your.institutional.shibboleth.url.here
-- /Shibboleth ```
+``` ::Shibboleth 
+
+IDP20 https://your.institutional.shibboleth.url.here
+
+/Shibboleth ```
 
 Conclude user.txt with the following directive:
 
@@ -32,6 +33,7 @@ Conclude user.txt with the following directive:
 Your shibboleth administrator will provide you with a set of attributes that shibboleth is releasing to you. You'll want to note what the shib attribute for username is. In our case, that attribute is UID. In shibuser.txt, you only need the following:
 
 ``` Set login:user = auth:uid
+
 If ! UserFile("alma.txt"); Deny baduser.txt ```
 
 Basically, you're setting login.user to auth:uid (this value will depend on your shibboleth set-up, but will need to reference the username attribute that shibboleth releases).
