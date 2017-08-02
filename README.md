@@ -4,7 +4,7 @@ This README covers steps for configuring Ezproxy to use shibboleth for authentic
 
 ### What is this repository for? ###
 
-* Quick summary
+* Shibboleth implements the "saml" protocol, and upon authentication returns something called a saml response, which looks like an xml document. The saml response contains the saml attribute statements, which are the attributes that are used by the application (ezproxy) to authorize / entitle the user. In most cases, Shibboleth will release enough attributes for ezproxy to make login authorization decisions. In those cases, there is no need to configure the Alma user API for authorization. However, in cases when shibboleth does not provide enough relevant attributes back, the need arises to take one of the released shibboleth attributes, and query the Alma user API with it, in order to get more information about the patron, and make authorization decisions.
 
 ### How do I get set up? ###
 
@@ -12,11 +12,10 @@ These instructions assume that shibboleth has already been configured for authen
 https://www.oclc.org/support/services/ezproxy/documentation/usr/shibboleth.en.html
 
 This set-up requires the existence/creation of three files:
-user.txt
 
-shibuser.txt
-
-alma.txt
+* user.txt
+* shibuser.txt
+* alma.txt
 
 In user.txt, make sure to have the Shibboleth declaration, similar to the following (refer to OCLC documentation for more info):
 
