@@ -11,7 +11,7 @@ This README covers steps for configuring Ezproxy to use shibboleth for authentic
 These instructions assume that shibboleth has already been configured for authentication. For more information, pleae see:
 https://www.oclc.org/support/services/ezproxy/documentation/usr/shibboleth.en.html
 
-This set-up requires the existence of three files:
+This set-up requires the existence/creation of three files:
 user.txt
 shibuser.txt
 alma.txt
@@ -31,6 +31,10 @@ Set login:user = auth:uid
 If ! UserFile("alma.txt"); Deny baduser.txt
 
 Basically, you're setting login.user to auth:uid (this value will depend on your shibboleth set-up, but will need to reference the username attribute that shibboleth releases).
+
+You'll also need to obtain an API key for the Users API through the Exlibris Developer Network. More information on how to do so below:
+https://developers.exlibrisgroup.com/alma/apis
+
 Finally, alma.txt will contain the directives related to the authorization decisions. Make sure to edit alma.txt to include your API key (Users API) obtained from the Exlibris' Developer Network.
 
 ### Contribution guidelines ###
