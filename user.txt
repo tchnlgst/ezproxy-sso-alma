@@ -1,0 +1,5 @@
+::Shibboleth 
+IDP20 https://YOUR.INSTITUTIONAL.SHIB.URL.HERE
+/Shibboleth
+
+::file=shibuser.txt

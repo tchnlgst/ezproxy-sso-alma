@@ -1,0 +1,2 @@
+Set login:user = auth:uid
+If ! UserFile("alma.txt"); Deny baduser.txt
