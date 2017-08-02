@@ -20,7 +20,9 @@ This set-up requires the existence/creation of three files:
 In user.txt, make sure to have the Shibboleth declaration, similar to the following (refer to OCLC documentation for more info):
 
 ``` ::Shibboleth 
+
 IDP20 https://your.institutional.shibboleth.url.here
+
 /Shibboleth ```
 
 Conclude user.txt with the following directive:
@@ -40,9 +42,9 @@ https://developers.exlibrisgroup.com/alma/apis
 
 Finally, alma.txt will contain the directives related to the authorization decisions. Make sure to edit alma.txt to include your API key (Users API) obtained from the Exlibris' Developer Network.
 
-### Contribution guidelines ###
+### Recognition ###
 
-Special thanks to Chris Zagar, original developer of Ezproxy, who provided most of the XML interface directives for interacting with the Alma User API.
+Special thanks to Chris Zagar, original developer of Ezproxy, who provided much of the XML interface directives for interacting with the Alma User API.
 
 ### Who do I talk to? ###
 
