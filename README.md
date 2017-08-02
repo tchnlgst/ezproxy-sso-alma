@@ -5,8 +5,6 @@ This README covers steps for configuring Ezproxy to use shibboleth for authentic
 ### What is this repository for? ###
 
 * Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
 
@@ -33,7 +31,7 @@ Set login:user = auth:uid
 If ! UserFile("alma.txt"); Deny baduser.txt
 
 Basically, you're setting login.user to auth:uid (this value will depend on your shibboleth set-up, but will need to reference the username attribute that shibboleth releases).
-Finally, alma.txt will contain the directives related to the authorization decisions.
+Finally, alma.txt will contain the directives related to the authorization decisions. Make sure to edit alma.txt to include your API key (Users API) obtained from the Exlibris' Developer Network.
 
 ### Contribution guidelines ###
 
