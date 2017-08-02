@@ -1,0 +1,40 @@
+::XML
+Set apikey = "YOUR_API_KEY_GOES_HERE_IN_QUOTATION_MARKS"
+
+# If no username present, stop XML processing
+If login:user eq ""; Stop
+
+# Alma base URL
+Set base = "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/users"
+Set url = base . "/" . URLEncode(login:user) . "?view=brief&apikey=" . URLEncode(apikey)
+URL url
+Binding &body, "in", "null", "scalar", "/user"
+Binding &status, "in", "null", "scalar", "/user/status"
+Binding &user_group, "in", "null", "scalar", "/user/user_group"
+Binding &expiry_date, "in", "null", "scalar", "/user/expiry_date"
+GET
+
+# Checking if user status is active. If not, present badstatus.htm
+If status ne "ACTIVE"; Deny badstatus.htm
+
+# Checking if user belongs to authorized user groups. If not, present badgroup.htm. Modify this section as needed.
+If user_group !~ "/^(Staff|Undergraduate|Whatever)$/"; Deny badgroup.htm
+
+# Ezproxy group assignemnts, based on alma patron type. Modify as needed, or comment section altogether.
+If user_group eq "Staff"; Group +Staff
+If user_group eq "Student"; Group +Student
+
+# If desired, set up admin users for ezproxy here. Comment if not needed.
+If login:user eq "johndoe";
+   Admin
+
+# This checks expiry_date only if format is valid; this may not be correct behavior
+if expiry_date =~ "/^(\\d{4})-(\\d{2})-(\\d{2})/" {
+  Set expiresDate = DateTime(re:1, re:2, re:3)
+  Set now = DateTime()
+  If expiresDate < DateTime(); Deny expired.htm
+}
+
+# User passed all required tests, so accept user as authenticated.
+Accept
+/XML
